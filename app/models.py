@@ -25,3 +25,19 @@ class Post(Base):
 
     # Relationship back to the user
     owner = relationship("User", back_populates="posts")
+
+
+
+
+class Comment(Base):
+    __tablename__ = "comments"
+
+    id = Column(Integer, primary_key=True, index=True)
+    comment = Column(String, nullable=False)
+    date = Column(String, nullable=False)
+    post_id = Column(Integer, ForeignKey("posts.id"))
+    owner_id = Column(Integer, ForeignKey("users.id"))
+
+    # Relationship back to the user
+    owner = relationship("User", back_populates="posts")
+    post = relationship("Post", back_populates="posts")
