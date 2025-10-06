@@ -13,8 +13,7 @@ app = FastAPI(title="User Management API")
 # CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # You can restrict later, e.g., ["http://localhost:3000"]
-    allow_credentials=True,
+    allow_origins=["*"],  
     allow_methods=["*"],
     allow_headers=["*"],
 )
