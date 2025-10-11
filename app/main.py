@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app import models, database
-from routes import post_routes, user_routes
+from routes import  post_routes, user_routes
+from routes.auth_router import router as auth_router
 
 
 # Create all tables at startup
@@ -13,7 +14,7 @@ app = FastAPI(title="User Management API")
 # CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -21,6 +22,7 @@ app.add_middleware(
 # routes
 app.include_router(user_routes.router)
 app.include_router(post_routes.router)
+app.include_router(auth_router)
 
 
 # Root endpoint
